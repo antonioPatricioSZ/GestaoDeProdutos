@@ -1,4 +1,8 @@
 ﻿namespace Infrastructure.Migrations;
-internal class NumberVersions
-{
+
+
+public enum NumberVersions {
+
+    CreateTableUser = 1
+
 }

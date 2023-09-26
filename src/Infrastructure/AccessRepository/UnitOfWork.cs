@@ -3,7 +3,7 @@
 namespace Infrastructure.AccessRepository;
 
 
-public sealed class UnitOfWork : IDisposable, IUnidadeDeTrabalho {
+public sealed class UnitOfWork : IDisposable, IUnitOfWork {
 
     private readonly GestaoDeProdutosContext _context;
     private bool _disposed;
