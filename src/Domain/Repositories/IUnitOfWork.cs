@@ -1,7 +1,7 @@
 ﻿namespace Domain.Repositories;
 
 
-public interface IUnidadeDeTrabalho {
+public interface IUnitOfWork {
 
     Task Commit();
 
