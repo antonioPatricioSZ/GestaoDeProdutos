@@ -117,4 +117,69 @@ public class RegisterUserValidatorTest {
     }
 
 
+    [Fact]
+    public void Validar_Erro_Email_Invalido() {
+
+        var validator = new RegisterUserValidator();
+
+        var requisicao = RequestUserRegistrationBuilder.RampUp();
+        requisicao.Email = "patricio6630";
+        requisicao.Password = "Patricio123@";
+
+        var resultado = validator.Validate(requisicao);
+
+        resultado.IsValid.Should().BeFalse();
+        resultado.Errors.Should().ContainSingle().And.Contain(
+            erro => erro.ErrorMessage.Equals(ResourceErrorMessages.EMAIL_USUARIO_INVALIDO)    
+        );
+
+    }
+
+
+    [Fact]
+    public void Validar_Erro_Telefone_Invalido() {
+
+        var validator = new RegisterUserValidator();
+
+        var requisicao = RequestUserRegistrationBuilder.RampUp();
+        requisicao.PhoneNumber = "123456";
+        requisicao.Password = "Patricio123@";
+
+        var resultado = validator.Validate(requisicao);
+
+        resultado.IsValid.Should().BeFalse();
+        resultado.Errors.Should().ContainSingle().And.Contain(
+            erro => erro.ErrorMessage.Equals(ResourceErrorMessages.TELEFONE_USUARIO_INVALIDO)
+        );
+
+    }
+
+
+    [Fact]
+    public void Validar_Erro_Senha_Fraca() {
+
+        var validator = new RegisterUserValidator();
+
+        var requisicao = RequestUserRegistrationBuilder.RampUp();
+        requisicao.Password = "patricio123";
+
+        var isWeak = 
+            requisicao.Password.Any(char.IsUpper) && 
+            requisicao.Password.Any(char.IsLower) &&
+            requisicao.Password.Any(char.IsDigit) &&
+            requisicao.Password.Any(char.IsSymbol) &&
+            requisicao.Password.Length >= 8;
+
+        var resultado = validator.Validate(requisicao);
+
+        if(!isWeak) {
+            resultado.IsValid.Should().BeFalse();
+            resultado.Errors.Should().ContainSingle().And.Contain(
+                erro => erro.ErrorMessage.Equals(ResourceErrorMessages.SENHA_FRACA)
+            );
+        }
+
+    }
+
+
 }

@@ -117,8 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CATEGORIA_INVALIDA" xml:space="preserve">
+    <value>Categoria inválida.</value>
+  </data>
+  <data name="CATEGORIA_NAO_ENCONTRADA" xml:space="preserve">
+    <value>Categoria não encontrada.</value>
+  </data>
   <data name="DATA_NASCIMENTO_EM_BRANCO" xml:space="preserve">
     <value>A data de nascimento do usuário deve ser informada.</value>
+  </data>
+  <data name="DESCRICAO_CATEGORIA_EM_BRANCO" xml:space="preserve">
+    <value>A descrição da categoria deve ser informada.</value>
+  </data>
+  <data name="DESCRICAO_PRODUTO_EMBRANCO" xml:space="preserve">
+    <value>A descrição do produto deve ser informada.</value>
   </data>
   <data name="EMAIL_JA_REGISTRADO" xml:space="preserve">
     <value>O e-mail informado já está registrado na base de dados.</value>
@@ -135,8 +147,23 @@
   <data name="LOGIN_INVALIDO" xml:space="preserve">
     <value>O e-mail e/ou senha estão incorretos.</value>
   </data>
+  <data name="NOME_CATEGORIA_EM_BRANCO" xml:space="preserve">
+    <value>O nome da categoria deve ser informado.</value>
+  </data>
+  <data name="NOME_PRODUTO_EMBRANCO" xml:space="preserve">
+    <value>O nome do produto deve ser informado.</value>
+  </data>
   <data name="NOME_USUARIO_EM_BRANCO" xml:space="preserve">
     <value>O nome do usuário deve ser informado.</value>
+  </data>
+  <data name="PRECO_COMPRA_PRODUTO_EM_BRANCO_OU_INVALIDO" xml:space="preserve">
+    <value>O preço de compra do produto deve ser informado e o valor deve ser maior que 0.</value>
+  </data>
+  <data name="PRECO_VENDA_PRODUTO_EM_BRANCO_OU_INVALIDO" xml:space="preserve">
+    <value>O preço de venda do produto deve ser informado e o valor deve ser maior que o valor de compra vezes 1.20.</value>
+  </data>
+  <data name="PRODUTO_NAO_ENCONTRADO" xml:space="preserve">
+    <value>Produto não encontrado.</value>
   </data>
   <data name="SENHA_FRACA" xml:space="preserve">
     <value>Senha inválida. A senha do usuário deve ter no minímo 8 caracteres, sendo, ao menos uma letra maiuscula, uma minuscula, um simbolo e um numero.</value>
@@ -149,5 +176,11 @@
   </data>
   <data name="TELEFONE_USUARIO_INVALIDO" xml:space="preserve">
     <value>O telefone do usuário deve estar no formato XX X XXXX-XXXX.</value>
+  </data>
+  <data name="TOKEN_EXPIRADO" xml:space="preserve">
+    <value>Faça login novamente na aplicação.</value>
+  </data>
+  <data name="USUARIO_SEM_PERMISSAO" xml:space="preserve">
+    <value>Você não possui permissão para acessar este recurso.</value>
   </data>
 </root>

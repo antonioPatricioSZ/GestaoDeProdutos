@@ -1,7 +1,14 @@
 ﻿using Application.Services.Token;
+using Application.Services.UserLogged;
+using Application.UseCases.Category.GetAll;
+using Application.UseCases.Category.GetById;
+using Application.UseCases.Category.Register;
 using Application.UseCases.Login;
+using Application.UseCases.Product.AddProduct;
+using Application.UseCases.Product.DeleteProduct;
+using Application.UseCases.Product.GetById;
+using Application.UseCases.Product.GetProducts;
 using Application.UseCases.User.Register;
-using Domain.UseCases.User.Register;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,8 +19,12 @@ public static class Initializer  {
     public static void AddApplication(this IServiceCollection services, IConfiguration configuration) {
         AddTokenJwt(configuration, services);
         AddUseCases(services);
+        AddUserLogged(services);
     }
 
+    private static void AddUserLogged(IServiceCollection services) {
+        services.AddScoped<IUserLogged, UserLogged>();
+    }
 
     private static void AddTokenJwt(IConfiguration configuration, IServiceCollection services) {
 
@@ -38,7 +49,14 @@ public static class Initializer  {
 
     private static void AddUseCases(IServiceCollection service) {
         service.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>()
-            .AddScoped<ILoginUseCase, LoginUseCase>();
+            .AddScoped<ILoginUseCase, LoginUseCase>()
+            .AddScoped<IAddProductUseCase, AddProductUseCase>()
+            .AddScoped<IGetProductsUseCase, GetProductsUseCase>()
+            .AddScoped<IGetProductByIdUseCase, GetProductByIdUseCase>()
+            .AddScoped<IRegisterCategoryUseCase, RegisterCategoryUseCase>()
+            .AddScoped<IGetAllCategoriesUseCase, GetAllCategoriesUseCase>()
+            .AddScoped<IGetCategoryByIdUseCase, GetCategoryByIdUseCase>()
+            .AddScoped<IDeleteProductUseCase, DeleteProductUseCase>();
     }
 
 }

@@ -1,9 +1,10 @@
 ﻿using Communication.Requests;
 using Communication.Responses;
 
-namespace Domain.UseCases.User.Register;
+namespace Application.UseCases.User.Register;
 
-public interface IRegisterUserUseCase {
+public interface IRegisterUserUseCase
+{
 
     Task<UserResponseRegisteredAndLoginJson> Executar(JsonUserRegistrationRequest user);
 

@@ -34,7 +34,7 @@ public class TokenController {
     private static ClaimsIdentity GenerateClaims(long userId, List<string> userRoles) {
 
         var ci = new ClaimsIdentity();
-        ci.AddClaim(new Claim(ClaimTypes.NameIdentifier, userId.ToString()));
+        ci.AddClaim(new Claim("Id", userId.ToString()));
 
         foreach (var role in userRoles) {
             ci.AddClaim(new Claim(ClaimTypes.Role, role));
@@ -52,6 +52,40 @@ public class TokenController {
         );
         return credentials;
     }
-    
+
+
+    public ClaimsPrincipal ValidateToken(string token) {
+
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.ASCII.GetBytes(_chaveToken); 
+
+        var parametrosValidacao = new TokenValidationParameters {
+            RequireExpirationTime = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ClockSkew = new TimeSpan(0),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+        };
+
+        var claims = tokenHandler.ValidateToken(token, parametrosValidacao, out _);
+        return claims;
+
+    }
+
+
+    public long UserIdInToken(string token) {
+
+        var claims = ValidateToken(token);
+        var idClaim = claims.FindFirst("Id");
+
+        if (idClaim != null) {
+            var valor = long.Parse(idClaim.Value);
+            return valor;      
+        } else {
+            return 0;
+        }
+
+    }
+
 
 }

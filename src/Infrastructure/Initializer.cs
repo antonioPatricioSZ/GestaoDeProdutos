@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Domain.Extension;
 using Domain.Repositories;
+using Domain.Repositories.Category;
+using Domain.Repositories.Product;
 using Domain.Repositories.User;
 using FluentMigrator.Runner;
 using Infrastructure.AccessRepository;
@@ -31,7 +33,11 @@ public static class Initializer {
 
     private static void AddRepositories(IServiceCollection services) {
         services.AddScoped<IUserWriteOnlyRepository, UserRepository>()
-            .AddScoped<IUserReadOnlyRepository, UserRepository>();
+            .AddScoped<IUserReadOnlyRepository, UserRepository>()
+            .AddScoped<IProductWriteOnlyRepository, ProductRepository>()
+            .AddScoped<IProductReadOnlyRepository, ProductRepository>()
+            .AddScoped<ICategoryWriteOnlyRepository, CategoryRepository>()
+            .AddScoped<ICategoryReadOnlyRepository, CategoryRepository>();
     }
 
     private static void AddContext(

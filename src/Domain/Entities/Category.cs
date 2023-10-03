@@ -1,11 +1,9 @@
-﻿using Domain.Enum;
-
-namespace Domain.Entities;
+﻿namespace Domain.Entities;
 
 public class Category : BaseEntity {
 
-    public CategoryEnum CategoryType { get; set; }
+    public string CategoryName { get; set; }
     public string Description { get; set; }
     public ICollection<Product> Products { get; set;}
-
+    // Esta propriedade representa a coleção de produtos associados a esta categoria
 }

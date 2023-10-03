@@ -61,11 +61,47 @@ namespace Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categoria inválida..
+        /// </summary>
+        public static string CATEGORIA_INVALIDA {
+            get {
+                return ResourceManager.GetString("CATEGORIA_INVALIDA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categoria não encontrada..
+        /// </summary>
+        public static string CATEGORIA_NAO_ENCONTRADA {
+            get {
+                return ResourceManager.GetString("CATEGORIA_NAO_ENCONTRADA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A data de nascimento do usuário deve ser informada..
         /// </summary>
         public static string DATA_NASCIMENTO_EM_BRANCO {
             get {
                 return ResourceManager.GetString("DATA_NASCIMENTO_EM_BRANCO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A descrição da categoria deve ser informada..
+        /// </summary>
+        public static string DESCRICAO_CATEGORIA_EM_BRANCO {
+            get {
+                return ResourceManager.GetString("DESCRICAO_CATEGORIA_EM_BRANCO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A descrição do produto deve ser informada..
+        /// </summary>
+        public static string DESCRICAO_PRODUTO_EMBRANCO {
+            get {
+                return ResourceManager.GetString("DESCRICAO_PRODUTO_EMBRANCO", resourceCulture);
             }
         }
         
@@ -115,11 +151,56 @@ namespace Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O nome da categoria deve ser informado..
+        /// </summary>
+        public static string NOME_CATEGORIA_EM_BRANCO {
+            get {
+                return ResourceManager.GetString("NOME_CATEGORIA_EM_BRANCO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O nome do produto deve ser informado..
+        /// </summary>
+        public static string NOME_PRODUTO_EMBRANCO {
+            get {
+                return ResourceManager.GetString("NOME_PRODUTO_EMBRANCO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O nome do usuário deve ser informado..
         /// </summary>
         public static string NOME_USUARIO_EM_BRANCO {
             get {
                 return ResourceManager.GetString("NOME_USUARIO_EM_BRANCO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O preço de compra do produto deve ser informado e o valor deve ser maior que 0..
+        /// </summary>
+        public static string PRECO_COMPRA_PRODUTO_EM_BRANCO_OU_INVALIDO {
+            get {
+                return ResourceManager.GetString("PRECO_COMPRA_PRODUTO_EM_BRANCO_OU_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O preço de venda do produto deve ser informado e o valor deve ser maior que o valor de compra vezes 1.20..
+        /// </summary>
+        public static string PRECO_VENDA_PRODUTO_EM_BRANCO_OU_INVALIDO {
+            get {
+                return ResourceManager.GetString("PRECO_VENDA_PRODUTO_EM_BRANCO_OU_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Produto não encontrado..
+        /// </summary>
+        public static string PRODUTO_NAO_ENCONTRADO {
+            get {
+                return ResourceManager.GetString("PRODUTO_NAO_ENCONTRADO", resourceCulture);
             }
         }
         
@@ -156,6 +237,24 @@ namespace Exceptions {
         public static string TELEFONE_USUARIO_INVALIDO {
             get {
                 return ResourceManager.GetString("TELEFONE_USUARIO_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faça login novamente na aplicação..
+        /// </summary>
+        public static string TOKEN_EXPIRADO {
+            get {
+                return ResourceManager.GetString("TOKEN_EXPIRADO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Você não possui permissão para acessar este recurso..
+        /// </summary>
+        public static string USUARIO_SEM_PERMISSAO {
+            get {
+                return ResourceManager.GetString("USUARIO_SEM_PERMISSAO", resourceCulture);
             }
         }
     }

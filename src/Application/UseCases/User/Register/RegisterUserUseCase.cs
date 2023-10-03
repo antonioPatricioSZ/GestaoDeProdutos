@@ -6,7 +6,6 @@ using Communication.Requests;
 using Communication.Responses;
 using Domain.Repositories;
 using Domain.Repositories.User;
-using Domain.UseCases.User.Register;
 using Exceptions;
 using Exceptions.ExceptionsBase;
 

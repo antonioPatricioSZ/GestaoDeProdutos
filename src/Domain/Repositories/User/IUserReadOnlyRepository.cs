@@ -6,4 +6,6 @@ public interface IUserReadOnlyRepository {
 
     Task<Entities.User> Login(string email, string password);
 
+    Task<Entities.User> RecoverById(long userId);
+
 }

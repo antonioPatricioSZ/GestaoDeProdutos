@@ -1,11 +1,11 @@
+using Application.UseCases.User.Register;
 using Communication.Requests;
 using Communication.Responses;
-using Domain.UseCases.User.Register;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 [ApiController]
-[Route("api/vi/[controller]")]
+[Route("api/v1/[controller]")]
 public class AuthController : ControllerBase {
 
 

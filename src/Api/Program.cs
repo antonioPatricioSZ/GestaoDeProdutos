@@ -5,12 +5,15 @@ using Domain.Extension;
 using Infrastructure;
 using Infrastructure.Migrations;
 using AutoMapper;
+using Api.Filters.UserLogged;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddRouting(config => config.LowercaseUrls = true);
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllers();
 
@@ -28,12 +31,17 @@ builder.Services.AddScoped(provider => new MapperConfiguration(config => {
     config.AddProfile(new AutoMapperConfiguration());
 }).CreateMapper());
 
+
+builder.Services.AddScoped<AuthenticatedUserAttribute>();
+
+
 builder.Services.AddCors(options => {
     options.AddPolicy(
         name: "PermitirApiRequest",
         build => build.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin()
     );
 });
+
 
 var app = builder.Build();
 

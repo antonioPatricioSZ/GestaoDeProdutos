@@ -30,4 +30,12 @@ public class UserRepository : IUserWriteOnlyRepository, IUserReadOnlyRepository 
     public async Task<bool> UserEmailExists(string email) {
         return await _context.Users.AnyAsync(user => user.Email.Equals(email));
     }
+
+    public async Task<User> RecoverById(long userId) {
+        return await _context.Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(
+                user => user.Id == userId
+            );
+    }
 }
