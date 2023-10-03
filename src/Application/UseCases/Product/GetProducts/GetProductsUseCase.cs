@@ -18,9 +18,11 @@ public class GetProductsUseCase : IGetProductsUseCase {
     }
 
     public async Task<List<ResponseGetProductJson>> Executar() {
-        
         var resultado = await _repository.GetAllProducts();
         return _mapper.Map<List<ResponseGetProductJson>>(resultado);
+    }
+
+    public void Teste() {
 
     }
 }
