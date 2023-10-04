@@ -9,6 +9,7 @@ using Application.UseCases.Product.DeleteProduct;
 using Application.UseCases.Product.GetById;
 using Application.UseCases.Product.GetProducts;
 using Application.UseCases.User.Register;
+using Domain.Extension;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,11 +21,25 @@ public static class Initializer  {
         AddTokenJwt(configuration, services);
         AddUseCases(services);
         AddUserLogged(services);
+        AddConnectionStringAzure(configuration, services);
     }
 
     private static void AddUserLogged(IServiceCollection services) {
         services.AddScoped<IUserLogged, UserLogged>();
     }
+
+
+    private static void AddConnectionStringAzure(IConfiguration configuration, IServiceCollection services) {
+
+        var stringConnectionAzure = configuration.GetRequiredSection("Configuracoes:Azure:AzureStorageConnectionString");
+
+        services.AddScoped(options => new AzureStorageStringConnection(
+                stringConnectionAzure.Value
+            )
+        );
+
+    }
+
 
     private static void AddTokenJwt(IConfiguration configuration, IServiceCollection services) {
 
