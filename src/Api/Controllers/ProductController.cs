@@ -12,14 +12,28 @@ namespace Api.Controllers;
 [ApiController]
 public class ProductController : ControllerBase {
 
+    //[HttpPost]
+    //[ProducesResponseType(typeof(ResponseProductJson), StatusCodes.Status201Created)]
+    //[ServiceFilter(typeof(AuthenticatedUserAttribute))]
+    //public async Task<IActionResult> AddProduct(
+    //    [FromBody] RequestProductJson request,
+    //    [FromServices] IAddProductUseCase useCase
+    //){
+    //    var resposta = await useCase.Executar(request);
+
+    //    return Created(string.Empty, resposta);
+    //}
+
+    public record Upload(string image);
+
+
     [HttpPost]
-    [ProducesResponseType(typeof(ResponseProductJson), StatusCodes.Status201Created)]
-    [ServiceFilter(typeof(AuthenticatedUserAttribute))]
-    public async Task<IActionResult> AddProduct(
-        [FromBody] RequestProductJson request,
-        [FromServices] IAddProductUseCase useCase
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    public async Task<IActionResult> AddImage(
+        [FromBody]  Upload model,
+        [FromServices] IGetProductsUseCase useCase
     ){
-        var resposta = await useCase.Executar(request);
+        var resposta = useCase.UploadBase65Image(model.image, "user-images");
 
         return Created(string.Empty, resposta);
     }
@@ -30,8 +44,7 @@ public class ProductController : ControllerBase {
     //[ServiceFilter(typeof(AuthenticatedUserAttribute))]
     public async Task<IActionResult> GetProducts(
         [FromServices] IGetProductsUseCase useCase
-    )
-    {
+    ){
         var resposta = await useCase.Executar();
 
         return Ok(resposta);
