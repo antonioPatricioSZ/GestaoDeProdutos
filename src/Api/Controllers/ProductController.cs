@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
-[Route("api/v1/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class ProductController : ControllerBase {
 
@@ -63,6 +63,16 @@ public class ProductController : ControllerBase {
         var resposta = await useCase.Executar(id);
 
         return Ok(resposta);
+    }
+
+
+    [HttpGet]
+    [Route("teste")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    //[ServiceFilter(typeof(AuthenticatedUserAttribute))]
+    public string TesteApi() {
+
+        return "Tudo certo!";
     }
 
 }
