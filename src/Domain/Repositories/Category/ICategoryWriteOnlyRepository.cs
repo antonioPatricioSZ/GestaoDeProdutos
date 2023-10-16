@@ -5,6 +5,6 @@ public interface ICategoryWriteOnlyRepository {
 
     Task RegisterCategory(Entities.Category category);
 
-    //Task Delete(long categoryId);
+    Task Delete(long categoryId);
 
 }

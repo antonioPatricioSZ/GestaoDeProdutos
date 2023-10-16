@@ -42,7 +42,8 @@ public class GetProductsUseCase : IGetProductsUseCase {
             filename
         );
 
-        using (var stream = new MemoryStream(imageBytes)) {
+        using (var stream = new MemoryStream(imageBytes))
+        {
             blobClient.Upload(stream);
         }
         return blobClient.Uri.AbsoluteUri;

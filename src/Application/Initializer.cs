@@ -1,13 +1,16 @@
 ﻿using Application.Services.Token;
 using Application.Services.UserLogged;
+using Application.UseCases.Category.Delete;
 using Application.UseCases.Category.GetAll;
 using Application.UseCases.Category.GetById;
 using Application.UseCases.Category.Register;
+using Application.UseCases.Category.Update;
 using Application.UseCases.Login;
 using Application.UseCases.Product.AddProduct;
 using Application.UseCases.Product.DeleteProduct;
 using Application.UseCases.Product.GetById;
 using Application.UseCases.Product.GetProducts;
+using Application.UseCases.Product.UpdateProduct;
 using Application.UseCases.User.Register;
 using Domain.Extension;
 using Microsoft.Extensions.Configuration;
@@ -71,7 +74,10 @@ public static class Initializer  {
             .AddScoped<IRegisterCategoryUseCase, RegisterCategoryUseCase>()
             .AddScoped<IGetAllCategoriesUseCase, GetAllCategoriesUseCase>()
             .AddScoped<IGetCategoryByIdUseCase, GetCategoryByIdUseCase>()
-            .AddScoped<IDeleteProductUseCase, DeleteProductUseCase>();
+            .AddScoped<IDeleteProductUseCase, DeleteProductUseCase>()
+            .AddScoped<IDeleteCategoryUseCase, DeleteCategoryUseCase>()
+            .AddScoped<IUpdateCategoryUseCase, UpdateCategoryUseCase>()
+            .AddScoped<IUpdateProductUseCase, UpdateProductUseCase>();
     }
 
 }

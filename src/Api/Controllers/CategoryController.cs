@@ -1,7 +1,8 @@
-﻿using Api.Filters.UserLogged;
+﻿using Application.UseCases.Category.Delete;
 using Application.UseCases.Category.GetAll;
 using Application.UseCases.Category.GetById;
 using Application.UseCases.Category.Register;
+using Application.UseCases.Category.Update;
 using Communication.Requests;
 using Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -16,8 +17,8 @@ public class CategoryController : ControllerBase {
 
     [HttpPost]
     [ProducesResponseType(typeof(ResponseCategoryJson), StatusCodes.Status201Created)]
-    [ServiceFilter(typeof(AuthenticatedUserAttribute))]
-    public async Task<IActionResult> AddCategory(
+    //[ServiceFilter(typeof(AuthenticatedUserAttribute))]
+    public async Task<IActionResult> AddCategory (
         [FromBody] RequestRegisterCategoryJson request,
         [FromServices] IRegisterCategoryUseCase useCase
     ){
@@ -30,7 +31,7 @@ public class CategoryController : ControllerBase {
     [HttpGet]
     [ProducesResponseType(typeof(List<ResponseCategoryJson>), StatusCodes.Status200OK)]
     //[ServiceFilter(typeof(AuthenticatedUserAttribute))]
-    public async Task<IActionResult> GetAllCategories(
+    public async Task<IActionResult> GetAllCategories (
         [FromServices] IGetAllCategoriesUseCase useCase
     ){
         var response = await useCase.Executar();
@@ -43,7 +44,7 @@ public class CategoryController : ControllerBase {
     [Route("{id}")]
     [ProducesResponseType(typeof(ResponseCategoryJson), StatusCodes.Status200OK)]
     //[ServiceFilter(typeof(AuthenticatedUserAttribute))]
-    public async Task<IActionResult> GetCategoryById(
+    public async Task<IActionResult> GetCategoryById (
         [FromServices] IGetCategoryByIdUseCase useCase,
         [FromRoute] long id
     )
@@ -51,6 +52,36 @@ public class CategoryController : ControllerBase {
         var response = await useCase.Executar(id);
 
         return Ok(response);
+    }
+
+
+
+    [HttpDelete]
+    [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> DeleteCategory (
+        [FromRoute] long id,
+        IDeleteCategoryUseCase useCase
+    ){
+
+        await useCase.Executar(id);
+
+        return NoContent();
+
+    }
+
+
+    [HttpPut]
+    [Route("atualizar/{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> UpdateCategory (
+        [FromServices] IUpdateCategoryUseCase useCase,
+        [FromBody] RequestRegisterCategoryJson request,
+        [FromRoute] long id
+    ){
+        await useCase.Executar(id, request);
+
+        return NoContent();
     }
 
 

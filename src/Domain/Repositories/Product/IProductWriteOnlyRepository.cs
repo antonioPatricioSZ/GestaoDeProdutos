@@ -2,7 +2,7 @@
 
 public interface IProductWriteOnlyRepository {
 
-    Task<bool> AddProduct(Entities.Product product, long categoryId);
+    Task AddProduct(Entities.Product product);
 
     Task Delete(long productId);
 
