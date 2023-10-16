@@ -142,6 +142,15 @@ namespace Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Informe uma categoria válida..
+        /// </summary>
+        public static string ID_CATEGORIA_INVALIDO {
+            get {
+                return ResourceManager.GetString("ID_CATEGORIA_INVALIDO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O e-mail e/ou senha estão incorretos..
         /// </summary>
         public static string LOGIN_INVALIDO {

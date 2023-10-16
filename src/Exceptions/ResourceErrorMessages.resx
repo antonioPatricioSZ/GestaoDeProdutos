@@ -144,6 +144,9 @@
   <data name="ERRO_DESCONHECIDO" xml:space="preserve">
     <value>Erro desconhecido.</value>
   </data>
+  <data name="ID_CATEGORIA_INVALIDO" xml:space="preserve">
+    <value>Informe uma categoria válida.</value>
+  </data>
   <data name="LOGIN_INVALIDO" xml:space="preserve">
     <value>O e-mail e/ou senha estão incorretos.</value>
   </data>

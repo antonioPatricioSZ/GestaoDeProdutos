@@ -4,7 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.AccessRepository.Repository;
 
-public class CategoryRepository : ICategoryWriteOnlyRepository, ICategoryReadOnlyRepository {
+public class CategoryRepository : 
+    ICategoryWriteOnlyRepository, 
+    ICategoryReadOnlyRepository,
+    ICategoryUpdateOnlyRepository {
 
     private readonly GestaoDeProdutosContext _context;
 
@@ -28,5 +31,20 @@ public class CategoryRepository : ICategoryWriteOnlyRepository, ICategoryReadOnl
             .FirstOrDefaultAsync(category => category.Id == categoryId);
     }
 
-    
+    public async Task Delete(long categoryId) {
+        var category = await _context.Categories
+            .AsNoTracking()
+            .FirstOrDefaultAsync(category => category.Id == categoryId);
+
+        _context.Categories.Remove(category);
+    }
+
+    public async Task<Category> GetById(long categoryId) { // essa é para atualizar
+        return await _context.Categories
+            .FirstOrDefaultAsync(category => category.Id == categoryId);
+    }
+
+    public void Update(Category category) {
+        _context.Categories.Update(category);
+    }
 }

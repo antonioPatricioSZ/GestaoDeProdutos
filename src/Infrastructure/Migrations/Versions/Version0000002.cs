@@ -37,9 +37,9 @@ public class Version0000002 : Migration {
             .WithColumn("PricePurchase").AsDecimal(10, 2).NotNullable()
             .WithColumn("PriceSale").AsDecimal(10, 2).NotNullable()
             .WithColumn("CategoryId").AsInt64().NotNullable()
-                .ForeignKey("FK_Product_Category_Id", "Categories", "Id");
-            
-
+                .ForeignKey("FK_Product_Category_Id", "Categories", "Id")
+                .OnDeleteOrUpdate(System.Data.Rule.Cascade);
+            // Ao exluir uma categoria os produtos que tem o id dessa categoria são exluidos
     }
 
 }

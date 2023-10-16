@@ -2,6 +2,7 @@
 using Domain.Extension;
 using Domain.Repositories;
 using Domain.Repositories.Category;
+using Domain.Repositories.Email.SendEmail;
 using Domain.Repositories.Product;
 using Domain.Repositories.User;
 using FluentMigrator.Runner;
@@ -36,8 +37,11 @@ public static class Initializer {
             .AddScoped<IUserReadOnlyRepository, UserRepository>()
             .AddScoped<IProductWriteOnlyRepository, ProductRepository>()
             .AddScoped<IProductReadOnlyRepository, ProductRepository>()
+            .AddScoped<IProductUpdateOnlyRepository, ProductRepository>()
             .AddScoped<ICategoryWriteOnlyRepository, CategoryRepository>()
-            .AddScoped<ICategoryReadOnlyRepository, CategoryRepository>();
+            .AddScoped<ICategoryReadOnlyRepository, CategoryRepository>()
+            .AddScoped<ICategoryUpdateOnlyRepository, CategoryRepository>()
+            .AddScoped<ISendEmail, SendEmail>();
     }
 
     private static void AddContext(
