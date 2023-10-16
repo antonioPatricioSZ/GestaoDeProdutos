@@ -25,6 +25,11 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
 
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
       - name: Install EF Tools
         run: dotnet tool install --global dotnet-ef
         
