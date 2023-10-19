@@ -24,20 +24,8 @@ public class GetProductsUseCase : IGetProductsUseCase {
         _stringCinnection = stringCinnection;
     }
 
-<<<<<<< HEAD
+
     public async Task<List<ResponseGetProductJson>> Executar() {   
-=======
-    public async Task<List<ResponseGetProductJson>> Executar() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 701f6ecb5f2c6ed0dab10c0420795385793d3e36
-=======
->>>>>>> main
-=======
->>>>>>> main
-=======
->>>>>>> main
         var resultado = await _repository.GetAllProducts();
         return _mapper.Map<List<ResponseGetProductJson>>(resultado);
     }
