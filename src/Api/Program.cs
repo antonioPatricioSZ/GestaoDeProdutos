@@ -9,11 +9,8 @@ using Api.Filters.UserLogged;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Infrastructure.AccessRepository;
-<<<<<<< HEAD
 using Api.Services.Health;
-using HealthChecks.UI.Client;
-=======
->>>>>>> main
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,12 +57,15 @@ builder.Services.AddHealthChecks()
 
 builder.Services.AddHealthChecks().AddDbContextCheck<GestaoDeProdutosContext>();
 
+
+builder.Services.AddHealthChecks().AddDbContextCheck<GestaoDeProdutosContext>();
+
 var app = builder.Build();
 
-<<<<<<< HEAD
+
 app.UseSwagger();
 app.UseSwaggerUI();
-=======
+
 app.MapHealthChecks("/health", new HealthCheckOptions
 {
     AllowCachingResponses = false, // para não fazer cache e ele sempre verificar se tá tudo ok
@@ -79,7 +79,6 @@ app.MapHealthChecks("/health", new HealthCheckOptions
 app.UseSwagger();
 app.UseSwaggerUI();
 
->>>>>>> main
 
 app.UseCors("PermitirApiRequest");
 
@@ -97,8 +96,8 @@ app.MapHealthChecks("/health", new HealthCheckOptions() {
     //    [HealthStatus.Healthy] = StatusCodes.Status200OK,
     //    [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
     //},
-    Predicate = _ => true,
-    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+    //Predicate = _ => true,
+    //ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
 
 

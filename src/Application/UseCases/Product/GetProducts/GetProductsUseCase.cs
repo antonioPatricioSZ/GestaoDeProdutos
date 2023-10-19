@@ -29,7 +29,10 @@ public class GetProductsUseCase : IGetProductsUseCase {
 =======
     public async Task<List<ResponseGetProductJson>> Executar() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 701f6ecb5f2c6ed0dab10c0420795385793d3e36
+=======
+>>>>>>> main
 =======
 >>>>>>> main
         var resultado = await _repository.GetAllProducts();
