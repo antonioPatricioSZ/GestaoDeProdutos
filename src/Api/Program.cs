@@ -6,11 +6,11 @@ using Infrastructure;
 using Infrastructure.Migrations;
 using AutoMapper;
 using Api.Filters.UserLogged;
+using Api.Services.Health;
+using Infrastructure.AccessRepository;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Infrastructure.AccessRepository;
-using Api.Services.Health;
-
+using HealthChecks.UI.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,37 +48,21 @@ builder.Services.AddCors(options => {
 });
 
 builder.Services.AddHealthChecks()
+    .AddDbContextCheck<GestaoDeProdutosContext>()
     .AddCheck<ApiHealthCheck>(
         "JokesApiChecks",
         tags: new string[] { "Jokes Api" }
     );
-    //.AddDbContextCheck<GestaoDeProdutosContext>();
 
-
-builder.Services.AddHealthChecks().AddDbContextCheck<GestaoDeProdutosContext>();
-
-
-builder.Services.AddHealthChecks().AddDbContextCheck<GestaoDeProdutosContext>();
 
 var app = builder.Build();
 
-
-app.UseSwagger();
-app.UseSwaggerUI();
-
-app.MapHealthChecks("/health", new HealthCheckOptions
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    AllowCachingResponses = false, // para não fazer cache e ele sempre verificar se tá tudo ok
-    ResultStatusCodes = {
-        [HealthStatus.Healthy] = StatusCodes.Status200OK,
-        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
-    }
-});
-
-
-app.UseSwagger();
-app.UseSwaggerUI();
-
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseCors("PermitirApiRequest");
 
@@ -90,14 +74,14 @@ app.UseAuthorization();
 app.MapControllers();
 
 
-app.MapHealthChecks("/health", new HealthCheckOptions() {
-    //AllowCachingResponses = false, // para não fazer cache e ele sempre verificar se tá tudo ok
-    //ResultStatusCodes = {
-    //    [HealthStatus.Healthy] = StatusCodes.Status200OK,
-    //    [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
-    //},
-    //Predicate = _ => true,
-    //ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+app.MapHealthChecks("/health", new HealthCheckOptions{
+    AllowCachingResponses = false, // para não fazer cache e ele sempre verificar se tá tudo ok
+    ResultStatusCodes = {
+        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
+    },
+    Predicate = _ => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
 
 
